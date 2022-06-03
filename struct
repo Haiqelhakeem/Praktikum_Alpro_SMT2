@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+struct manusia{
+    string nama;
+    int umur;
+    int gender; //1 = Pria 2 = Wanita
+    int berat;
+    int tinggi;
+    string emosi_sekarang;
+    string hobi[5];
+};
+
+struct agent{
+    string nama;
+    string role;
+    int hp;
+    int basic_attack;
+    int speed;
+    int accuracy;
+    string skill1;
+    string skill2;
+    string skill3;
+    string ult;
+}
+
+int main() {
+    manusia m1;
+    m1.nama = "Haiqel";
+    m1.umur = 19;
+    m1.gender = 1;
+    m1.berat = 70;
+    m1.tinggi = 173;
+    m1.emosi_sekarang = "Senang";
+    m1.hobi[0] = "Mendengarkan musik";
+    m1.hobi[1] = "Gaming";
+    m1.hobi[2] = "Makan";
+    
+    cout << "Saya adalah " << m1.nama << " berumur " << m1.umur << " tahun";
+    
+    return 0;
+}

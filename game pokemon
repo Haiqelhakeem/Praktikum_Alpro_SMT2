@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
+
+int main(){
+    int panjang_peta = 10;
+    int lebar_peta = 10;
+
+    int posisi_karakter_x = 1;
+    int posisi_karakter_y = 1;
+    
+    cout << "Posisi karakter: " << posisi_karakter_x << ", " << posisi_karakter_y << endl;
+    
+    int map[lebar_peta][panjang_peta] = {
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    };
+    
+    int arrowkey = 0;
+    
+    while(1){
+        cout << "Masukkan arrowkey: ";
+        cin >> arrowkey;
+        
+        //gerak ke atas
+        if (arrowkey == 72 &&)
+    }
+    
+}

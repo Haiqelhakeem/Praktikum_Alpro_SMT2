@@ -1,22 +1,139 @@
 #include <iostream>
+#include <conio.h>
 using namespace std;
 
-int row, column;
+char board[3][3]={
+	{'1', '2', '3'},
+	{'4', '5', '6'},	//bentuk matriks yang digunakan 3x3
+	{'7', '8', '9'},
+};
+int row;
+int column;
+string player1, player2; //player 1 sebagai o; player 2 sebagai x
+char token = 'x';
+bool tie = false;
 
-int map() {
-    int map[3][3]={
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9},
-    };
-    
-    cout << map[0][0] << " " << map[0][1] << " " << map[0][2] << endl;
-    cout << map[1][0] << " " << map[1][1] << " " << map[1][2] << endl;
-    cout << map[2][0] << " " << map[2][1] << " " << map[2][2] << endl;
-    
-    return 0;
+void clrscr(){
+	system("cls");
+}
+
+void play_1(){
+	//function untuk tampilan papan permainan
+	cout << board[0][0] << " | " << board[0][1] << " | " << board[0][2] << endl;
+	cout << "---------" << endl;
+	cout << board[1][0] << " | " << board[1][1] << " | " << board[1][2] << endl;
+	cout << "---------" << endl;
+	cout << board[2][0] << " | " << board[2][1] << " | " << board[2][2] << endl;
+}
+
+void play_2(){
+	//function untuk mengganti nilai yang dipilih menjadi x atau o
+	int guess;
+	
+	if (token == 'x'){
+		cout << "Player 1 please enter your choice: ";
+		cin >> guess;
+	}
+	if (token == 'o'){
+		cout << "Player 2 please enter your choice: ";
+		cin >> guess;
+	}
+	
+	if (guess == 1){
+		row = 0;
+		column = 0;
+	}
+	if (guess == 2){
+		row = 0;
+		column = 1;
+	}
+	if (guess == 3){
+		row = 0;
+		column = 2;
+	}
+	if (guess == 4){
+		row = 1;
+		column = 0;
+	}
+	if (guess == 5){
+		row = 1;
+		column = 1;
+	}
+	if (guess == 6){
+		row = 1;
+		column = 2;
+	}
+	if (guess == 7){
+		row = 2;
+		column = 0;
+	}
+	if (guess == 8){
+		row = 2;
+		column = 1;
+	}
+	if (guess == 9){
+		row = 2;
+		column = 2;
+	}
+	else if (guess < 1 || guess > 9){
+		cout << "Invalid number" << endl;
+	}
+	
+	if (token == 'x' && board[row][column] != 'x' && board[row][column] != 'o'){
+		board[row][column] = 'x';
+		token = 'o';
+	}
+	else if (token == 'o' && board[row][column] !='x' && board[row][column] !='o'){
+		board[row][column] = 'o';
+		token = 'x';
+	}
+	else{
+		cout << "Invalid" << endl;
+		play_2();
+	}
+	clrscr();
+}
+
+bool play_3(){
+	for (int i = 0; i < 3; i++){ 
+		if (board[i][0] == board[i][1] && board[i][0] == board[i][2] || board[0][i] == board[1][i] && board[0][i] == board[2][i])
+		return true; //memeriksa nilai horizontal dan vertikal
+	}
+		if (board[0][0] == board[1][1] && board[0][0] == board [2][2] || board[0][2] == board[1][1] && board [0][2] == board[2][0]){
+		return true; // memeriksa nilai diagonal
+	}
+	for (int i = 0; i < 3; i++){ //memeriksa apakah hasilnya seri atau tidak
+		for (int j = 0; j < 3; j++){
+			if (board[i][j] != 'x' && board[i][j] != 'o'){
+				return false;
+			}
+		}
+	}
+	tie = true;
+	return false;
 }
 
 int main(){
-    map();
+	cout << "Please enter player 1's name: ";
+	cin >> player1;
+	cout << "Please enter player 2's name: ";
+	cin >> player2;
+	
+	cout << player1 << " will go first." << endl;
+	cout << player2 << " will go second\n" << endl;
+	
+	do{
+		play_1();
+		play_2();
+		play_3();
+	} while(!play_3());
+		if (token == 'x' && tie == false){
+			cout << player1 << " win" << endl;
+		}
+		else if (token == 'o' && tie == false){
+			cout << player2 << " win" << endl;
+		}
+		else if (tie == true){
+			cout << "DRAW" << endl;
+		}
 }

@@ -7,133 +7,266 @@ char board[3][3]={
 	{'4', '5', '6'},	//bentuk matriks yang digunakan 3x3
 	{'7', '8', '9'},
 };
-int row;
-int column;
-string player1, player2; //player 1 sebagai o; player 2 sebagai x
-char token = 'x';
-bool tie = false;
+int row;					//baris (sumbu x)
+int column;					//kolom (sumbu y)
+string player1, player2; 	//player 1 sebagai o; player 2 sebagai x
+char token = 'x'; 			//untuk memulai sebagai player pertama
+bool tie = false; 			//di awal dengan nilai false agar tidak menghasilkan nilai seri
+
+int answer; //menjawab pertanyaan yang diberikan saat bermain
 
 void clrscr(){
-	system("cls");
+	system("cls"); //clearscreen
 }
 
 void play_1(){
 	//function untuk tampilan papan permainan
-	cout << board[0][0] << " | " << board[0][1] << " | " << board[0][2] << endl;
-	cout << "---------" << endl;
-	cout << board[1][0] << " | " << board[1][1] << " | " << board[1][2] << endl;
-	cout << "---------" << endl;
-	cout << board[2][0] << " | " << board[2][1] << " | " << board[2][2] << endl;
+	cout << " " << board[0][0] << " | " << board[0][1] << " | " << board[0][2] << endl;
+	cout << "----------" << endl;
+	cout << " " << board[1][0] << " | " << board[1][1] << " | " << board[1][2] << endl;
+	cout << "----------" << endl;
+	cout << " " << board[2][0] << " | " << board[2][1] << " | " << board[2][2] << endl;
 }
+
+struct soal{
+	string question; 	//menampilkan pertanyaan
+	int answer;			//menampilkan jawaban
+};
 
 void play_2(){
 	//function untuk mengganti nilai yang dipilih menjadi x atau o
-	int guess;
 	
-	if (token == 'x'){
+	int guess; //untuk memasukkan angka saat memilih dari papan
+	
+	// soal-soal yang ditampilkan dan jawabnnya
+	soal soal1;
+		soal1.question = "5^(2) + 5*4 = ";
+		soal1.answer = 45;
+	
+	soal soal2;
+		soal2.question = "V25 - V9 = ";
+		soal2.answer = 2;
+		
+	soal soal3;
+		soal3.question = "125 - 80 / 10 = ";
+		soal3.answer = 117;
+	
+	soal soal4;
+		soal4.question = "0 Celsius = ... Fahrenheit ";
+		soal4.answer = 32;
+	
+	soal soal5;
+		soal5.question = "360 / 6 * 5 = ";
+		soal5.answer = 300;
+	
+	soal soal6;
+		soal6.question = "3^(4) / 3^(2) = ";
+		soal6.answer = 9;
+		
+	soal soal7;
+		soal7.question = "888 + 88 + 8 + 8 + 8 = ";
+		soal7.answer = 1000;
+		
+	soal soal8;
+		soal8.question = "1 km + 2 m = ... m ";
+		soal8.answer = 1002;
+	
+	soal soal9;
+		soal9.question = "1 liter = ... milliliter ";
+		soal9.answer = 1000;
+	
+	if (token == 'x'){ //player 1 = x
 		cout << "Player 1 please enter your choice: ";
 		cin >> guess;
 	}
-	if (token == 'o'){
+	if (token == 'o'){ //player 2 = o
 		cout << "Player 2 please enter your choice: ";
 		cin >> guess;
 	}
 	
-	if (guess == 1){
-		row = 0;
-		column = 0;
-	}
-	if (guess == 2){
-		row = 0;
-		column = 1;
-	}
-	if (guess == 3){
-		row = 0;
-		column = 2;
-	}
-	if (guess == 4){
-		row = 1;
-		column = 0;
-	}
-	if (guess == 5){
-		row = 1;
-		column = 1;
-	}
-	if (guess == 6){
-		row = 1;
-		column = 2;
-	}
-	if (guess == 7){
-		row = 2;
-		column = 0;
-	}
-	if (guess == 8){
-		row = 2;
-		column = 1;
-	}
-	if (guess == 9){
-		row = 2;
-		column = 2;
-	}
-	else if (guess < 1 || guess > 9){
-		cout << "Invalid number" << endl;
-	}
-	
+	// menggunakan switch case untuk bermain
+    switch(guess){
+        case 1: 
+        	cout << soal1.question;
+        	cin >> answer;
+        	if (answer == soal1.answer){
+        		row=0; 
+				column=0; 
+				break;
+			}else if (answer != soal1.answer){
+				break;
+			}
+        case 2:
+        	cout << soal2.question;
+        	cin >> answer;
+        	if (answer == soal2.answer){
+        	row=0; 
+			column=1; 
+			break;
+			}else if(answer != soal2.answer){
+				break;
+			}
+        case 3: 			
+			cout << soal3.question;
+        	cin >> answer;
+        	if (answer == soal3.answer){
+        	row=0; 
+			column=2; 
+			break;
+			}else if(answer != soal3.answer){
+				break;
+			}
+        case 4: 			
+			cout << soal4.question;
+        	cin >> answer;
+        	if (answer == soal4.answer){
+        	row=1; 
+			column=0; 
+			break;
+			}else if(answer != soal4.answer){
+				break;
+			}
+        case 5: 			
+			cout << soal5.question;
+        	cin >> answer;
+        	if (answer == soal5.answer){
+        	row=1; 
+			column=1; 
+			break;
+			}else if(answer != soal5.answer){
+				break;
+			}
+        case 6: 			
+			cout << soal6.question;
+        	cin >> answer;
+        	if (answer == soal6.answer){
+        	row=1; 
+			column=2; 
+			break;
+			}else if(answer != soal6.answer){
+				break;
+			}
+        case 7: 			
+			cout << soal7.question;
+        	cin >> answer;
+        	if (answer == soal7.answer){
+        	row=2; 
+			column=0; 
+			break;
+			}else if(answer != soal7.answer){
+				break;
+			}
+        case 8: 			
+			cout << soal8.question;
+        	cin >> answer;
+        	if (answer == soal8.answer){
+        	row=2; 
+			column=1; 
+			break;
+			}else if(answer != soal8.answer){
+				break;
+			}
+        case 9: 			
+			cout << soal9.question;
+        	cin >> answer;
+        	if (answer == soal9.answer){
+        	row=2; 
+			column=2; 
+			break;
+			}else if(answer != soal9.answer){
+				break;
+			}
+		case 0:
+			tie = true;
+			break;
+        default:
+            cout<<"Invalid Move";
+    }
+	// ganti pemain dan cek jawaban
+	// jika pemain 1 benar menjawab pertanyaan maka angka yang dipilih menjadi 'x'	
 	if (token == 'x' && board[row][column] != 'x' && board[row][column] != 'o'){
-		board[row][column] = 'x';
+		// jika player benar
+		if (row == 0 && column == 0 && answer == soal1.answer || row == 0 && column == 1 && answer == soal2.answer || row == 0 && column == 2 && answer == soal3.answer || row == 1 && column == 0 && answer == soal4.answer || row == 1 && column == 1 && answer == soal5.answer || row == 1 && column == 2 && answer == soal6.answer || row == 2 && column == 0 && answer == soal7.answer || row == 2 && column == 1 && answer == soal8.answer || row == 2 && column == 2 && answer == soal9.answer){
+			cout << "Your answer is right!";
+			board[row][column] = 'x';
+			token = 'o';
+		}
+		// jika player salah menjawab pertanyaan maka akan diganti ke player selanjutnya
+		else if (row == 0 && column == 0 && answer != soal1.answer || row == 0 && column == 1 && answer != soal2.answer || row == 0 && column == 2 && answer != soal3.answer || row == 1 && column == 0 && answer != soal4.answer || row == 1 && column == 1 && answer != soal5.answer || row == 1 && column == 2 && answer != soal6.answer || row == 2 && column == 0 && answer != soal7.answer || row == 2 && column == 1 && answer != soal8.answer || row == 2 && column == 2 && answer != soal9.answer){
+			cout << "Your answer is wrong";
+			token = 'o';
+		}
+	}
+	// jika pemain 2 benar menjawab pertanyaan maka angka yang dipilih menjadi 'o'
+	else if (token == 'o' && board[row][column] !='x' && board[row][column] !='o'){
+		// jika player benar
+		if (row == 0 && column == 0 && answer == soal1.answer || row == 0 && column == 1 && answer == soal2.answer || row == 0 && column == 2 && answer == soal3.answer || row == 1 && column == 0 && answer == soal4.answer || row == 1 && column == 1 && answer == soal5.answer || row == 1 && column == 2 && answer == soal6.answer || row == 2 && column == 0 && answer == soal7.answer || row == 2 && column == 1 && answer == soal8.answer || row == 2 && column == 2 && answer == soal9.answer){
+			cout << "Your answer is right!";
+			board[row][column] = 'o';
+			token = 'x';
+		}
+		// jika player salah menjawab pertanyaan maka akan diganti ke player selanjutnya
+		else if (row == 0 && column == 0 && answer != soal1.answer || row == 0 && column == 1 && answer != soal2.answer || row == 0 && column == 2 && answer != soal3.answer || row == 1 && column == 0 && answer != soal4.answer || row == 1 && column == 1 && answer != soal5.answer || row == 1 && column == 2 && answer != soal6.answer || row == 2 && column == 0 && answer != soal7.answer || row == 2 && column == 1 && answer != soal8.answer || row == 2 && column == 2 && answer != soal9.answer){
+			cout << "Your answer is wrong";
+			token = 'x';
+		}
+	}
+	// jika pemain input clearcreen saat memilih angka di papan maka akan menghasilkan "DRAW"
+	else if(guess == 0){
+		cout << "DRAW";
+	}
+	// jika player 1 salah maka akan berganti ke player 2
+	else if(token == 'x' && row == 0 && column == 0 && answer != soal1.answer || row == 0 && column == 1 && answer != soal2.answer || row == 0 && column == 2 && answer != soal3.answer || row == 1 && column == 0 && answer != soal4.answer || row == 1 && column == 1 && answer != soal5.answer || row == 1 && column == 2 && answer != soal6.answer || row == 2 && column == 0 && answer != soal7.answer || row == 2 && column == 1 && answer != soal8.answer || row == 2 && column == 2 && answer != soal9.answer){
+		cout << "Your answer is wrong. Changing to the next player" << endl;
 		token = 'o';
 	}
-	else if (token == 'o' && board[row][column] !='x' && board[row][column] !='o'){
-		board[row][column] = 'o';
+	// jika player 2 salah maka akan berganti ke player 1
+	else if(token == 'o' && row == 0 && column == 0 && answer != soal1.answer || row == 0 && column == 1 && answer != soal2.answer || row == 0 && column == 2 && answer != soal3.answer || row == 1 && column == 0 && answer != soal4.answer || row == 1 && column == 1 && answer != soal5.answer || row == 1 && column == 2 && answer != soal6.answer || row == 2 && column == 0 && answer != soal7.answer || row == 2 && column == 1 && answer != soal8.answer || row == 2 && column == 2 && answer != soal9.answer){
+		cout << "Your answer is wrong. Changing to the next player" << endl;
 		token = 'x';
 	}
+	// saat memasukkan angka yang tidak sesuai dengan range
 	else{
 		cout << "Invalid" << endl;
 		play_2();
 	}
+	// clearscreen saat telah selesai menebak agar terminal tidak penuh sampai ke bawah
 	clrscr();
 }
 
 bool play_3(){
-	for (int i = 0; i < 3; i++){ 
-		if (board[i][0] == board[i][1] && board[i][0] == board[i][2] || board[0][i] == board[1][i] && board[0][i] == board[2][i])
-		return true; //memeriksa nilai horizontal dan vertikal
-	}
-		if (board[0][0] == board[1][1] && board[0][0] == board [2][2] || board[0][2] == board[1][1] && board [0][2] == board[2][0]){
-		return true; // memeriksa nilai diagonal
-	}
-	for (int i = 0; i < 3; i++){ //memeriksa apakah hasilnya seri atau tidak
-		for (int j = 0; j < 3; j++){
-			if (board[i][j] != 'x' && board[i][j] != 'o'){
-				return false;
-			}
+	// loop untuk memeriksa nilai horizontal dan vertikal
+    for(int i=0; i<3; i++){
+    	//memeriksa nilai horizontal dan vertikal
+    	if(board[i][0] == board[i][1] && board[i][0] == board[i][2] || board[0][i] == board[1][i] && board[0][i] == board[2][i]){
+			return true;     		
 		}
 	}
-	tie = true;
-	return false;
+	//memeriksa nilai diagonal
+    if(board[0][0] == board[1][1] && board[0][0] == board[2][2] || board[0][2] == board[1][1] && board[0][2] == board[2][0]){
+    	return true;
+	}
 }
 
 int main(){
+	// memasukkan nama player 1 dan 2
 	cout << "Please enter player 1's name: ";
 	cin >> player1;
 	cout << "Please enter player 2's name: ";
 	cin >> player2;
 	
-	cout << player1 << " will go first." << endl;
-	cout << player2 << " will go second\n" << endl;
+	cout << player1 << " will go first. (x)" << endl;
+	cout << player2 << " will go second. (o)\n" << endl;
 	
 	do{
 		play_1();
 		play_2();
 		play_3();
-	} while(!play_3());
+	} while(!play_3()); //mengembalikan nilai boolean berdasarkan nilai return dari function
 		if (token == 'x' && tie == false){
-			cout << player1 << " win" << endl;
-		}
-		else if (token == 'o' && tie == false){
 			cout << player2 << " win" << endl;
 		}
-		else if (tie == true){
-			cout << "DRAW" << endl;
+		else if (token == 'o' && tie == false){
+			cout << player1 << " win" << endl;
 		}
 }
